@@ -13,8 +13,8 @@ const Banner = () => {
                 <div
                     className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
                 >
-                    <div className="max-w-xl text-left sm:text-left rtl:sm:text-right">
-                        <h1 className="text-4xl font-extrabold sm:text-6xl">
+                    <div className="max-w-xl text-center sm:text-left">
+                        <h1 className="text-6xl font-extrabold sm:text-6xl">
                             Adventure is Out There,
 
                             <strong className="block font-extrabold text-green-500">
@@ -27,7 +27,7 @@ const Banner = () => {
                             tenetur fuga ducimus numquam ea!
                         </p>
 
-                        <div className="mt-8 flex flex-wrap gap-4 text-center">
+                        <div className="mt-8 flex flex-row mx-auto w-1/2 md:w-full flex-wrap gap-4 text-center">
                             <a
                                 href="#"
                                 className="primary-button"
