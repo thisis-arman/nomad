@@ -4,21 +4,21 @@ const Banner = () => {
     return (
         <div>
             <section
-                className="relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"
+                className="relative bg-[url(https://img.freepik.com/free-photo/group-hikers-walking-through-mountain-forest-generated-by-ai_188544-29868.jpg?t=st=1697597886~exp=1697601486~hmac=502d4eec59af52b0789871660de13ebd0b005b9e8cd026065503ee77a4b7646f&w=1060)] bg-cover bg-right bg-no-repeat"
             >
                 <div
-                    className="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
+                    className="absolute inset-0 bg-white/25  sm:from-black/75 sm:to-black/0 sm:bg-gradient-to-r "
                 ></div>
 
                 <div
                     className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
                 >
-                    <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-                        <h1 className="text-3xl font-extrabold sm:text-5xl">
-                            Let us find your
+                    <div className="max-w-xl text-left sm:text-left rtl:sm:text-right">
+                        <h1 className="text-4xl font-extrabold sm:text-6xl">
+                            Adventure is Out There,
 
-                            <strong className="block font-extrabold text-rose-700">
-                                Forever Home.
+                            <strong className="block font-extrabold text-green-500">
+                                Are You Ready?
                             </strong>
                         </h1>
 
@@ -30,14 +30,14 @@ const Banner = () => {
                         <div className="mt-8 flex flex-wrap gap-4 text-center">
                             <a
                                 href="#"
-                                className="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+                                className="primary-button"
                             >
                                 Get Started
                             </a>
 
                             <a
                                 href="#"
-                                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+                                className="secondary-button"
                             >
                                 Learn More
                             </a>
