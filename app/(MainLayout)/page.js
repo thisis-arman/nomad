@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Banner from './Components/HomeComponents/Banner'
 import Navbar from './Components/HomeComponents/Navbar'
 import Products from './Components/Products'
+import Events from './Components/Events'
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       {/* <Navbar/> */}
       <Banner/>
       <Products/>
+      <Events/>
     </main>
   )
 }
