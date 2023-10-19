@@ -8,7 +8,7 @@ const Banner = () => {
                 className="relative bg-[url(https://img.freepik.com/free-vector/camping-colored-composition-tent-camping-equipment-stand-clearing-lake-mountains-vector-illustration_1284-77474.jpg?w=1060&t=st=1697620046~exp=1697620646~hmac=1c135deacd4dc4d1a798866a278f25cd5c58cb4e36e106ec261da8a7bf7f14ae)] bg-cover bg-bottom bg-no-repeat"
             >
                 <div
-                    className="absolute inset-0 bg-white/10  sm:from-black/75 sm:to-black/0 sm:bg-gradient-to-r "
+                    className="absolute inset-0 bg-black/20  sm:from-black/75 sm:to-black/0 sm:bg-gradient-to-r bg-gradient-to-b from-black/75 to-black/0"
                 ></div>
 
                 <div

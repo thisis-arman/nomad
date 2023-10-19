@@ -12,10 +12,10 @@ const Products = () => {
     return (
         <section className='container mx-auto py-12 px-4'>
             <h1 className='text-4xl font-bold pb-8'>Products</h1>
-            <div className='grid md:grid-cols-3 gap-8 grid-cols-1'>
+            <div className='grid md:grid-cols-4 gap-8 grid-cols-2'>
                 {
                     products.slice(0, 9).map(product => <a key={product.id} href="#" className="group block shadow-md overflow-hidden">
-                        <div className="relative h-[350px] sm:h-[350px] ">
+                        <div className="relative h-[250px] sm:h-[280px] ">
                             <Image width={500} height={600}
                                 src={product?.imageURL}
                                 alt=""

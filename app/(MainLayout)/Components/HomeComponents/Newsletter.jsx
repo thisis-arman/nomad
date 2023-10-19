@@ -2,12 +2,12 @@
 
 const Newsletter = () => {
     return (
-        <div className="container mx-auto py-6">
-            <section className="bg-gray-400 rounded-t-3xl">
+        <div className="container mx-auto py-6 px-2">
+            <section className="bg-teal-700 rounded-t-3xl">
                 <div className="p-8 md:p-12 lg:px-16 lg:py-24 ">
                     <div className="mx-auto max-w-lg text-center">
-                        <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit
+                        <h2 className="text-2xl font-bold  md:text-3xl">
+                            To Get Updates About Our new Products You Can Join to Our Newsletter
                         </h2>
 
                         <p className="hidden  sm:mt-4 sm:block">
@@ -31,7 +31,7 @@ const Newsletter = () => {
 
                             <button
                                 type="submit"
-                                className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
+                                className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-lime-600 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
                             >
                                 <span className="text-sm font-medium"> Submit </span>
 
