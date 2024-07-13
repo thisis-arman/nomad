@@ -3,7 +3,7 @@
 const Home = () => {
     return (
         <div>
-            home page
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dicta.</p>
         </div>
     );
 };
