@@ -1,0 +1,83 @@
+[
+  {
+    "productName": "Hiking Backpack",
+    "price": 120.99,
+    "stockQuantity": 50,
+    "description": "A durable backpack perfect for long hikes.",
+    "category": "Hiking",
+    "ratings": 4.7,
+    "images": "https://www.rei.com/media/21e1c154-7b2d-49f4-9b2f-197fb2f3d181.jpg"
+  },
+  {
+    "productName": "Camping Tent",
+    "price": 199.99,
+    "stockQuantity": 30,
+    "description": "A lightweight tent for two people.",
+    "category": "Camping",
+    "ratings": 4.8,
+    "images": "https://www.rei.com/media/e2741a83-72a5-4f21-b87c-9a44c0105093.jpg"
+  },
+  {
+    "productName": "Sleeping Bag",
+    "price": 89.99,
+    "stockQuantity": 100,
+    "description": "A warm sleeping bag for cold nights.",
+    "category": "Camping",
+    "ratings": 4.6,
+    "images": "https://www.rei.com/media/51bd3bf6-dd21-4fd5-99bf-7d947266c9ae.jpg"
+  },
+  {
+    "productName": "Hiking Boots",
+    "price": 150.0,
+    "stockQuantity": 75,
+    "description": "Waterproof hiking boots for tough terrain.",
+    "category": "Hiking",
+    "ratings": 4.5,
+    "images": "https://www.rei.com/media/03eb40c0-1934-4d65-959f-8e4f93c8b6a3.jpg"
+  },
+  {
+    "productName": "Travel Backpack",
+    "price": 130.5,
+    "stockQuantity": 40,
+    "description": "Spacious backpack for all your travel needs.",
+    "category": "Travel",
+    "ratings": 4.7,
+    "images":"https://www.rei.com/media/301c7af9-76c3-412d-86cf-c4282b27a0ec.jpg"
+  },
+  {
+    "productName": "Portable Camping Stove",
+    "price": 59.99,
+    "stockQuantity": 60,
+    "description": "Compact stove for camping and hiking.",
+    "category": "Camping",
+    "ratings": 4.4,
+    "images": "https://www.rei.com/media/591f6cfa-22fd-4372-9ee9-766127cbcc44.jpg"
+  },
+  {
+    "productName": "Water Filter Bottle",
+    "price": 35.0,
+    "stockQuantity": 80,
+    "description": "Filter water from any source while on the go.",
+    "category": "Travel",
+    "ratings": 4.8,
+    "images": "https://www.rei.com/media/089bc043-9626-44e4-be1c-d0940d8bef5b.jpg"
+  },
+  {
+    "productName": "Multi-tool Knife",
+    "price": 45.99,
+    "stockQuantity": 120,
+    "description": "Versatile multi-tool for outdoor adventures.",
+    "category": "Hiking",
+    "ratings": 4.9,
+    "images": "https://www.rei.com/media/7b19e4e2-1040-41cb-8a5e-6f0bcdf5eb33.jpg"
+  },
+  {
+    "productName": "Trekking Poles",
+    "price": 60.0,
+    "stockQuantity": 90,
+    "description": "Lightweight poles for trekking and hiking.",
+    "category": "Hiking",
+    "ratings": 4.6,
+    "images": "https://www.rei.com/media/4d397e83-1abb-4814-b321-6b9cf5bdcd17.jpg"
+  }
+]
