@@ -1,9 +1,10 @@
+import HeroBanner from "../components/ui/homeComponents/HeroBanner";
 
 
 const Home = () => {
     return (
         <div>
-           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dicta.</p>
+            <HeroBanner />
         </div>
     );
 };
