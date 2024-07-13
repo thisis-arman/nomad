@@ -28,9 +28,7 @@ async function run() {
 
     app.get("/products", async (req, res) => {
       const query = req.query;
-      const result = await productsCollection.aggregate([{
-        $match: {$text:{$search:{query}}}
-      }]).toArray();
+      const result = await productsCollection.aggregate().toArray();
       console.log(result);
       res.json({
         success: true,
