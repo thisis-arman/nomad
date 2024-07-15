@@ -10,3 +10,5 @@ export const productApi = baseApi.injectEndpoints({
         })
     })
 })
+
+export const {useGetProductsQuery } = productApi;
