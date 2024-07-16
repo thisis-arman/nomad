@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { Slider } from "../components/ui/slider";
 import { useGetProductsQuery } from "../redux/features/products/productApi";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Badge } from "../components/ui/badge";
 
 
 
@@ -25,7 +26,17 @@ const Products = () => {
         return <p>Loading ...</p>
     }
 
+    const groupedByCategory = data.data.reduce((acc, item) => {
+        const { category } = item;
 
+        if (!acc[category]) {
+            acc[category] = [];
+        }
+
+        acc[category].push(item);
+
+        return acc;
+    }, {});
 
 
 
@@ -71,6 +82,14 @@ const Products = () => {
     };
 
 
+    let arr = []
+
+    for (const [key, value] of Object.entries(groupedByCategory)) {
+        console.log(`${key}: ${value.length}`);
+
+        arr.push({ name: key, items: value })
+    }
+
 
 
 
@@ -87,6 +106,7 @@ const Products = () => {
                     <Slider className="text-[#2D6A4F]" style={{ background: "#2D6A4F" }} defaultValue={[100]} min={0} max={100} step={1} />
 
                     <h1 className="text-xl font-semibold my-4">Filter by Categories</h1>
+
 
                     {/* <div className=" space-y-3">
                         <div className="flex items-center gap-2">
@@ -118,14 +138,25 @@ const Products = () => {
                         </div>
                     </div> */}
 
-                    <Tabs defaultValue="account" className="">
+                    {/* <Tabs defaultValue="account" className="">
                         <TabsList className="flex flex-col items-center justify-start gap-4">
                             <TabsTrigger className="" value="account">Account</TabsTrigger>
                             <TabsTrigger className="" value="password">Password</TabsTrigger>
                         </TabsList>
                         <TabsContent value="account">Make changes to your account here.</TabsContent>
                         <TabsContent value="password">Change your password here.</TabsContent>
-                    </Tabs>
+                    </Tabs> */}
+                    {
+                        arr.map(category =>
+                            <div className="px-4 m-2 cursor-pointer hover:bg-[#52B788] hover:text-white font-semibold py-2 bg-slate-100 rounded-sm shadow-sm">
+                                {category.name} <Badge className="bg-gray-200" variant="outline">{category?.items?.length}</Badge>
+                            </div>
+                        )
+                    }
+
+
+
+
                 </div>
 
                 <div className="md:col-span-8 col-span-1 ">
@@ -138,7 +169,7 @@ const Products = () => {
                                 {/* <Button type="submit">Search</Button> */}
                             </div>
                             <Select
-                                // onValueChange={(value) => handleSelectChange(value)}
+                            // onValueChange={(value) => handleSelectChange(value)}
                             >
                                 <SelectTrigger className="w-[180px]" >
                                     <SelectValue placeholder="Sort by price" />

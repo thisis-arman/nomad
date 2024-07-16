@@ -22,6 +22,8 @@ const callouts = [
     },
 ]
 
+
+
 const ShopByCategory = () => {
     return (
         <div className="bg-gray-100">
