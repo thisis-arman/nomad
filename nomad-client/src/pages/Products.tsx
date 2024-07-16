@@ -4,7 +4,7 @@ import { Checkbox } from "../components/ui/checkbox";
 import { Input } from "../components/ui/input";
 
 import ProductCard from "../components/ui/ProductCard";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Slider } from "../components/ui/slider";
 import { useGetProductsQuery } from "../redux/features/products/productApi";
 
@@ -12,15 +12,22 @@ import { useGetProductsQuery } from "../redux/features/products/productApi";
 
 const Products = () => {
     const [filteredByCategory, setFilteredByCategory] = useState([]);
-    const { data, isLoading } = useGetProductsQuery(undefined);
+
+    const [searchQuery, setSearchQuery] = useState<string>('')
+    const { data, isLoading } = useGetProductsQuery(searchQuery);
     if (isLoading) {
         return <p>Loading ...</p>
     }
 
+    const handleSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value); // Update searchQuery state when input changes
+    };
 
     const productPrices = data?.data?.map((a) => a.price)
     const minimumPriceOfProducts = Math.min(...productPrices);
     const maximumPriceOfProducts = Math.max(...productPrices);
+
+
 
 
     const filterByCategory = (e: Event, categoryName: string) => {
@@ -88,11 +95,11 @@ const Products = () => {
                 <div className="md:col-span-8 col-span-1 ">
                     <div className="mb-8">
                         <form
-                            onSubmit={(e) => e.preventDefault()}
-                            className=" w-full flex justify-between px-4 mx-auto mt-8">
+                            // onSubmit={(e) => handleSearchQuery(e.target.value)}
+                            className=" w-full flex justify-between px-4 mx-auto mt-8" >
                             <div className="flex w-full max-w-sm items-center space-x-2">
-                                <Input type="text" placeholder="Search.." />
-                                <Button type="submit">Search</Button>
+                                <Input onChange={(e) => handleSearchQuery(e)} type="text" name="search" placeholder="Search.." />
+                                {/* <Button type="submit">Search</Button> */}
                             </div>
 
                             <Select>
@@ -109,7 +116,7 @@ const Products = () => {
                             </Select>
                         </form>
                     </div>
-                    <ProductCard items={filteredByCategory} />
+                    <ProductCard items={filteredByCategory.length ? filteredByCategory : data.data} />
 
                 </div>
             </div>
