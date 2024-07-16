@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 
 import { Slider } from "../components/ui/slider";
 import { useGetProductsQuery } from "../redux/features/products/productApi";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 
 
 
@@ -87,7 +88,7 @@ const Products = () => {
 
                     <h1 className="text-xl font-semibold my-4">Filter by Categories</h1>
 
-                    <div className=" space-y-3">
+                    {/* <div className=" space-y-3">
                         <div className="flex items-center gap-2">
                             <Checkbox onCheckedChange={(e) => filterByCategory(e, 'hiking')} className="" id="terms" name="hiking" value={"hiking"} />
                             <label
@@ -115,7 +116,16 @@ const Products = () => {
                                 Traveling
                             </label>
                         </div>
-                    </div>
+                    </div> */}
+
+                    <Tabs defaultValue="account" className="">
+                        <TabsList className="flex flex-col items-center justify-start gap-4">
+                            <TabsTrigger className="" value="account">Account</TabsTrigger>
+                            <TabsTrigger className="" value="password">Password</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="account">Make changes to your account here.</TabsContent>
+                        <TabsContent value="password">Change your password here.</TabsContent>
+                    </Tabs>
                 </div>
 
                 <div className="md:col-span-8 col-span-1 ">

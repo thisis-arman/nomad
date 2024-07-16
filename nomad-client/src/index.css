@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
 
-*{
-  font-family: "Hind Siliguri", sans-serif;;
+* {
+  font-family: "Hind Siliguri", sans-serif;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -14,11 +16,12 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    /* --primary: 222.2 47.4% 11.2%; */
-    --primary: 153, 40%, 30%;
+    --primary: 150, 52%, 36%; /* #2D6A4F */
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
+    --secondary: 145, 53%, 43%; /* #40916C */
     --secondary-foreground: 222.2 47.4% 11.2%;
+    --tertiary-1: 142, 45%, 53%; /* #52B788 */
+    --tertiary-2: 142, 40%, 63%; /* #74C69D */
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96.1%;
@@ -47,6 +50,8 @@
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
+    --tertiary-1: 142, 45%, 53%; /* #52B788 */
+    --tertiary-2: 142, 40%, 63%; /* #74C69D */
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 217.2 32.6% 17.5%;
