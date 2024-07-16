@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
-import { Button } from "../components/ui/button";
+// import { Button } from "../components/ui/button";
 import { Checkbox } from "../components/ui/checkbox";
 import { Input } from "../components/ui/input";
 
 import ProductCard from "../components/ui/ProductCard";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
+
 import { Slider } from "../components/ui/slider";
 import { useGetProductsQuery } from "../redux/features/products/productApi";
 
@@ -12,12 +14,19 @@ import { useGetProductsQuery } from "../redux/features/products/productApi";
 
 const Products = () => {
     const [filteredByCategory, setFilteredByCategory] = useState([]);
-
     const [searchQuery, setSearchQuery] = useState<string>('')
+    // const [selectedValue, setSelectedValue] = useState('');
+
+
     const { data, isLoading } = useGetProductsQuery(searchQuery);
+    // const [products, setProducts] = useState(data?.data)
     if (isLoading) {
         return <p>Loading ...</p>
     }
+
+
+
+
 
     const handleSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value); // Update searchQuery state when input changes
@@ -27,6 +36,20 @@ const Products = () => {
     const minimumPriceOfProducts = Math.min(...productPrices);
     const maximumPriceOfProducts = Math.max(...productPrices);
 
+
+
+    // const handleSelectChange = (value: string) => {
+    //     // setSelectedValue(value);
+    //     if (value == 'lowToHigh') {
+    //         // Sort the data in ascending order based on price
+    //         const sorted = products?.sort((a, b) => a.price - b.price);
+    //         // console.log(sorted);
+    //         setProducts(sorted);
+
+    //         // Update state or perform other operations with sorted data
+    //         // setData({ ...data, data: sorted });  // Assuming you update data state
+    //     }
+    // };
 
 
 
@@ -45,7 +68,10 @@ const Products = () => {
 
         return filtered;
     };
-    console.log(filteredByCategory);
+
+
+
+
 
     return (
         <div>
@@ -57,7 +83,7 @@ const Products = () => {
                         <Input className="w-24 " type="number" name="minPrice" defaultValue={minimumPriceOfProducts} />
                         <Input className="w-24" type="number" name="maxPrice" defaultValue={maximumPriceOfProducts} />
                     </div>
-                    <Slider defaultValue={[100]} min={0} max={100} step={1} />
+                    <Slider className="text-[#2D6A4F]" style={{ background: "#2D6A4F" }} defaultValue={[100]} min={0} max={100} step={1} />
 
                     <h1 className="text-xl font-semibold my-4">Filter by Categories</h1>
 
@@ -101,22 +127,26 @@ const Products = () => {
                                 <Input onChange={(e) => handleSearchQuery(e)} type="text" name="search" placeholder="Search.." />
                                 {/* <Button type="submit">Search</Button> */}
                             </div>
-
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
+                            <Select
+                                // onValueChange={(value) => handleSelectChange(value)}
+                            >
+                                <SelectTrigger className="w-[180px]" >
                                     <SelectValue placeholder="Sort by price" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        {/* <SelectLabel>Fruits</SelectLabel> */}
-                                        <SelectItem value="lowToHigh">Low to High</SelectItem>
-                                        <SelectItem value="highToLow">High to Low</SelectItem>
+                                        <SelectItem value="lowToHigh" >
+                                            Low to High
+                                        </SelectItem>
+                                        <SelectItem value="highToLow" >
+                                            High to Low
+                                        </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
                         </form>
                     </div>
-                    <ProductCard items={filteredByCategory.length ? filteredByCategory : data.data} />
+                    <ProductCard items={filteredByCategory.length ? filteredByCategory : data?.data} />
 
                 </div>
             </div>
