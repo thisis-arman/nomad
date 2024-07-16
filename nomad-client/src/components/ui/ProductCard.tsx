@@ -3,36 +3,30 @@ const ProductCard = ({ items }) => {
     console.log(items);
 
     return (
-        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 ">
-            {
-                items?.map((item,i) => <a href="#" key={i} className="group block overflow-hidden">
-                    <div className="relative h-[200px] sm:h-[300px]">
+        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {items.map((product) => (
+                <div key={product.id} className="group relative">
+                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                         <img
-                            src={item?.images}
-                            alt=""
-                            className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0"
-                        />
-
-                        <img
-                            src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
-                            alt=""
-                            className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100"
+                            alt={product.productName}
+                            src={product.images}
+                            className="h-full w-full object-fill object-center lg:h-full lg:w-full"
                         />
                     </div>
-
-                    <div className="relative bg-white pt-3">
-                        <h3 className="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                            {item.productName}
-                        </h3>
-
-                        <div className="mt-1.5 flex items-center justify-between text-gray-900">
-                            <p className="tracking-wide">$ {item.price}</p>
-
-                            <p className="text-xs uppercase tracking-wide">6 Colors</p>
+                    <div className="mt-4 flex justify-between">
+                        <div>
+                            <h3 className="text-sm text-gray-700">
+                                <a href={product._id}>
+                                    <span aria-hidden="true" className="absolute inset-0" />
+                                    {product.productName}
+                                </a>
+                            </h3>
+                            <p className="mt-1 text-sm text-gray-500">{product.category}</p>
                         </div>
+                        <p className="text-sm font-medium text-gray-900">{product.price}</p>
                     </div>
-                </a>)
-            }
+                </div>
+            ))}
         </div>
     );
 };

@@ -1,12 +1,13 @@
 import HeroSection from "../components/ui/HeroSection";
-import HeroBanner from "../components/ui/homeComponents/HeroBanner";
+import RecommendedProducts from "../components/ui/homeComponents/RecommendedProducts";
 
 
 const Home = () => {
     return (
         <div>
             {/* <HeroBanner /> */}
-            <HeroSection/>
+            <HeroSection />
+            <RecommendedProducts/>
         </div>
     );
 };
