@@ -1,5 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 import * as dotenv from "dotenv";
+const { ObjectId } = require("mongodb");
 import express from "express";
 import cors from "cors";
 
@@ -60,7 +61,6 @@ async function run() {
         } else {
           result = await productsCollection.find().toArray();
         }
-
         console.log("Result:", result);
         res.json({
           success: true,
@@ -73,6 +73,43 @@ async function run() {
           success: false,
           message: "Error retrieving products",
           error: error.message,
+        });
+      }
+    });
+
+    app.get("/products/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log({id});
+
+      // Validate the MongoDB ObjectId
+      if (!ObjectId.isValid(id)) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid product ID format",
+        });
+      }
+
+      try {
+        const objectId = new ObjectId(id);
+        const result = await productsCollection.findOne({ _id: objectId });
+
+        if (!result) {
+          return res.status(404).json({
+            success: false,
+            message: "Product not found",
+          });
+        }
+
+        res.json({
+          success: true,
+          message: "Product retrieved successfully",
+          data: result,
+        });
+      } catch (error) {
+        console.error("Error retrieving product:", error);
+        res.status(500).json({
+          success: false,
+          message: "An error occurred while retrieving the product",
         });
       }
     });
