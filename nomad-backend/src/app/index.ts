@@ -10,6 +10,9 @@ const port = process.env.PORT || 5000;
 const app = express();
 const corsOptions = {
   origin: "http://localhost:5173",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow cookies to be sent
+  optionsSuccessStatus: 204,
 };
 
 app.use(cors(corsOptions));
@@ -77,9 +80,18 @@ async function run() {
       }
     });
 
+    app.get("/get-products", async (req, res) => {
+      const result = await productsCollection.find().toArray();
+      res.json({
+        success: true,
+        message: "Products retrieved successfully",
+        data: result,
+      });
+    });
+
     app.get("/products/:id", async (req, res) => {
       const id = req.params.id;
-      console.log({id});
+      console.log({ id });
 
       // Validate the MongoDB ObjectId
       if (!ObjectId.isValid(id)) {
@@ -110,6 +122,21 @@ async function run() {
         res.status(500).json({
           success: false,
           message: "An error occurred while retrieving the product",
+        });
+      }
+    });
+
+    app.get("/product-by-category", async (req, res) => {
+      const query = req.query;
+      console.log("category => ", query);
+      if (query) {
+        const result = await productsCollection
+          .aggregate([{ $match: { category: query.category } }])
+          .toArray();
+        res.json({
+          success: true,
+          message: "Product retrieved successfully",
+          data: result,
         });
       }
     });

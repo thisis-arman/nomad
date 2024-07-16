@@ -5,14 +5,22 @@ export const productApi = baseApi.injectEndpoints({
 
         getProducts: builder.query({
             query: (searchQuery) => {
-                console.log(searchQuery);
+                // console.log(searchQuery);
 
-                let searchParams;
-                if (searchQuery) {
-                    return searchParams = `search=${searchQuery}`
-                }
+                // let searchParams;
+                // if (searchQuery) {
+                //     return searchParams = `search=${searchQuery}`
+                // }
                 return {
-                    url: `/products?${searchParams}`,
+                    url: `/products?search=${searchQuery}`,
+                    method: "GET",
+                };
+            },
+        }),
+        getAllProducts: builder.query({
+            query: () => {
+                return {
+                    url: `/get-products`,
                     method: "GET",
                 };
             },
@@ -25,7 +33,15 @@ export const productApi = baseApi.injectEndpoints({
                 };
             },
         }),
+        getProductByCategory: builder.query({
+            query: (category) => {
+                return {
+                    url: `/product-by-category?category=${category}`,
+                    method: "GET",
+                };
+            },
+        }),
     })
 })
 
-export const { useGetProductsQuery,useGetSingleProductQuery } = productApi;
+export const {useGetAllProductsQuery, useGetProductsQuery, useGetSingleProductQuery, useGetProductByCategoryQuery } = productApi;

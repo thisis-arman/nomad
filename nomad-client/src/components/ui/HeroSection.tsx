@@ -2,7 +2,7 @@ import * as React from "react"
 import { Carousel, CarouselContent, CarouselItem } from "./carousel"
 import { Card, CardContent } from "./card"
 import Autoplay from 'embla-carousel-autoplay'
-import { useGetProductsQuery } from "../../redux/features/products/productApi"
+import { useGetAllProductsQuery, useGetProductsQuery } from "../../redux/features/products/productApi"
 import AOS from 'aos'
 import { Button } from "./button"
 
@@ -28,7 +28,7 @@ const HeroSection = () => {
         });
     }, []);
 
-    const { data, isLoading } = useGetProductsQuery(undefined)
+    const { data, isLoading } = useGetAllProductsQuery(undefined)
     if (isLoading) {
         return <div className="h-screen w-5/6 mx-auto">
             <h2 className="text-4xl font-bold">loading...</h2>

@@ -1,32 +1,35 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 // import { Button } from "../components/ui/button";
-import { Checkbox } from "../components/ui/checkbox";
+// import { Checkbox } from "../components/ui/checkbox";
 import { Input } from "../components/ui/input";
 
 import ProductCard from "../components/ui/ProductCard";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 
 import { Slider } from "../components/ui/slider";
-import { useGetProductsQuery } from "../redux/features/products/productApi";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { useGetProductByCategoryQuery, useGetProductsQuery } from "../redux/features/products/productApi";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Badge } from "../components/ui/badge";
 
 
 
 const Products = () => {
-    const [filteredByCategory, setFilteredByCategory] = useState([]);
-    const [searchQuery, setSearchQuery] = useState<string>('')
-    // const [selectedValue, setSelectedValue] = useState('');
+    // const [filteredByCategory, setFilteredByCategory] = useState([]);
+    const [query, setQuery] = useState<string>('')
+    const [category, setCategory] = useState<string>('')
+    const { data: productsByCategory } = useGetProductByCategoryQuery(category)
+    // const [products, setProducts] = useState([]);
 
 
-    const { data, isLoading } = useGetProductsQuery(searchQuery);
+    const { data, isLoading } = useGetProductsQuery(query);
     // const [products, setProducts] = useState(data?.data)
+    console.log(data);
     if (isLoading) {
         return <p>Loading ...</p>
     }
 
-    const groupedByCategory = data.data.reduce((acc, item) => {
+    const groupedByCategory = data?.data?.reduce((acc, item) => {
         const { category } = item;
 
         if (!acc[category]) {
@@ -40,8 +43,9 @@ const Products = () => {
 
 
 
+
     const handleSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value); // Update searchQuery state when input changes
+        setQuery(e.target.value); // Update searchQuery state when input changes
     };
 
     const productPrices = data?.data?.map((a) => a.price)
@@ -63,30 +67,37 @@ const Products = () => {
     //     }
     // };
 
+    const fetchCategory = (value: string) => {
+        console.log(value)
+
+        if (isLoading) {
+            return <p>loading.....</p>
+        }
+        setCategory(value)
+        console.log(productsByCategory)
+    }
 
 
-    const filterByCategory = (e: Event, categoryName: string) => {
-        // e.preventDefault(); // Prevent the default behavior if necessary
+    // const filterByCategory = (e: Event, categoryName: string) => {
+    //     // e.preventDefault(); // Prevent the default behavior if necessary
 
-        const normalizedCategoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1).toLowerCase();
-        const filtered = data?.data.filter(a => a.category === normalizedCategoryName);
+    //     const normalizedCategoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1).toLowerCase();
+    //     const filtered = data?.data.filter(a => a.category === normalizedCategoryName);
 
-        console.log(categoryName);
-        console.log(filtered);
-        console.log(e);
-        console.log("checked", categoryName);
+    //     console.log(categoryName);
+    //     console.log(filtered);
+    //     console.log(e);
+    //     console.log("checked", categoryName);
 
-        setFilteredByCategory(filtered); // Store the filtered products in state
+    //     setFilteredByCategory(filtered); // Store the filtered products in state
 
-        return filtered;
-    };
+    //     return filtered;
+    // };
 
 
-    let arr = []
+    const arr = []
 
     for (const [key, value] of Object.entries(groupedByCategory)) {
-        console.log(`${key}: ${value.length}`);
-
         arr.push({ name: key, items: value })
     }
 
@@ -148,7 +159,7 @@ const Products = () => {
                     </Tabs> */}
                     {
                         arr.map(category =>
-                            <div className="px-4 m-2 cursor-pointer hover:bg-[#52B788] hover:text-white font-semibold py-2 bg-slate-100 rounded-sm shadow-sm">
+                            <div className="px-4 m-2 cursor-pointer hover:bg-[#52B788] hover:text-white font-semibold py-2 bg-slate-100 rounded-sm shadow-sm" onClick={() => fetchCategory(category.name)}>
                                 {category.name} <Badge className="bg-gray-200" variant="outline">{category?.items?.length}</Badge>
                             </div>
                         )
@@ -187,7 +198,10 @@ const Products = () => {
                             </Select>
                         </form>
                     </div>
-                    <ProductCard items={filteredByCategory.length ? filteredByCategory : data?.data} />
+                    <ProductCard
+                        items={data.data || productsByCategory?.data}
+
+                    />
 
                 </div>
             </div>
