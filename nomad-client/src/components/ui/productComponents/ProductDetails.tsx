@@ -90,11 +90,11 @@ const ProductDetails = () => {
             <div className="pt-6">
                 <nav aria-label="Breadcrumb">
                     <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                        {product.breadcrumbs.map((breadcrumb) => (
-                            <li key={breadcrumb.id}>
+        
+                            <li key={data.data._id}>
                                 <div className="flex items-center">
-                                    <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
-                                        {breadcrumb.name}
+                                <a href='/products' className="mr-2 text-sm font-medium text-gray-900">
+                                        {data.data.category}
                                     </a>
                                     <svg
                                         fill="currentColor"
@@ -108,9 +108,9 @@ const ProductDetails = () => {
                                     </svg>
                                 </div>
                             </li>
-                        ))}
+                 
                         <li className="text-sm">
-                            <a href={product.href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
+                            <a href={`/products/${data.data._id}`} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
                                 {data?.data.productName}
                             </a>
                         </li>

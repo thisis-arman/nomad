@@ -289,8 +289,8 @@ export default function Example() {
                                     <span className="sr-only">Nomad</span>
                                     <img
                                         alt=""
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                        className="h-8 w-auto"
+                                        src="/src/assets/nomad.png"
+                                        className="h-16 w-auto"
                                     />
                                 </a>
                             </div>
