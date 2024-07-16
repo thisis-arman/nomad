@@ -1,8 +1,14 @@
+import Contact from "../components/ui/aboutComponents/Contact";
+import Mission from "../components/ui/aboutComponents/Mission";
+import Team from "../components/ui/aboutComponents/Team";
 
 const About = () => {
     return (
         <div>
-            about
+
+            <Mission/>
+            <Team />
+            <Contact/>
         </div>
     );
 };

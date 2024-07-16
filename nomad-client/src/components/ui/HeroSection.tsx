@@ -53,7 +53,7 @@ const HeroSection = () => {
                                 className="relative bg-contain bg-center bg-no-repeat">
                                 <CardContent data-aos="fade-up" data-aos-delay="1000" className="flex h-screen max-w-screen items-center justify-around p-6">
                                     <div>
-                                        <h2 className="text-4xl font-semibold">{item.productName}</h2>
+                                        <h2 className="text-6xl font-semibold">{item.productName}</h2>
                                         <p className="py-4 text-lg ">${item?.price}</p>
                                         <Button className="bg-[#2D6A4f] px-8  hover:bg-[#20563e] " ><a href={`/products/${item._id}`}>SHOP NOW</a></Button>
                                     </div>

@@ -56,15 +56,15 @@ const ShopByCategory = () => {
         return acc;
     }, {});
 
-    // const fetchCategory = (value: string) => {
-    //     console.log(value)
+    const fetchCategory = (value: string) => {
+        console.log(value)
 
-    //     if (isLoading) {
-    //         return <p>loading.....</p>
-    //     }
-    //     setCategory(value)
-    //     console.log(productsByCategory)
-    // }
+        if (isLoading) {
+            return <p>loading.....</p>
+        }
+        setCategory(value)
+        console.log(productsByCategory)
+    }
 
     const categories = []
 
@@ -81,7 +81,7 @@ const ShopByCategory = () => {
 
                     <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
                         {categories?.map((category,i) => (
-                            <div key={i} className="group relative flex bg-white hover:shadow-lg hover:border p-4 rounded-lg sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1">
+                            <div onClick={()=>fetchCategory(category.name)} key={i} className="group relative flex bg-white hover:shadow-lg hover:border p-4 rounded-lg sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1">
                                 <div className="relative h-80 w-full overflow-hidden rounded-lg sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-95 sm:h-52">
                                     <img
                                         alt={category?.items[0]?.productName}
