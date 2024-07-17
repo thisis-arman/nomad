@@ -1,6 +1,8 @@
 'use client'
-import { subtle } from 'crypto'
-import { useAppSelector } from '../redux/hook'
+import { removeFromCart } from '../redux/features/cart/cartSlice'
+import { useAppDispatch, useAppSelector } from '../redux/hook'
+import Swal from 'sweetalert2'
+
 
 const products = [
     {
@@ -29,11 +31,36 @@ const products = [
 
 const Cart = () => {
     // const [open, setOpen] = useState(false)
+    const dispatch = useAppDispatch()
 
+    const handleRemoveFromCart = (orderId: string) => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(removeFromCart(orderId))
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your product has been deleted from cart.",
+                    icon: "success"
+                });
+            }
+        });
+
+    }
     const { cart } = useAppSelector((state) => state.cart)
     console.log(cart);
 
     const subTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+
 
     return (
         <section>
@@ -81,7 +108,7 @@ const Cart = () => {
                                         />
                                     </form>
 
-                                    <button className="text-gray-600 transition hover:text-red-600">
+                                    <button onClick={() => handleRemoveFromCart(item.orderId)} className="text-gray-600 transition hover:text-red-600">
                                         <span className="sr-only">Remove item</span>
 
                                         <svg
@@ -108,7 +135,7 @@ const Cart = () => {
                                 <dl className="space-y-0.5 text-sm text-gray-700">
                                     <div className="flex justify-between">
                                         <dt>Subtotal</dt>
-                                        <dd>${subTotal}</dd>
+                                        <dd>${(subTotal).toFixed(2)}</dd>
                                     </div>
 
                                     <div className="flex justify-between">
@@ -123,7 +150,7 @@ const Cart = () => {
 
                                     <div className="flex justify-between !text-base font-medium">
                                         <dt>Total</dt>
-                                        <dd>${subTotal}</dd>
+                                        <dd>${(subTotal).toFixed(2)}</dd>
                                     </div>
                                 </dl>
 
