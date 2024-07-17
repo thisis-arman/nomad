@@ -89,6 +89,18 @@ async function run() {
       });
     });
 
+    app.get("/get-products/:category", async (req, res) => {
+      const query = req.params.category;
+      const result = await productsCollection
+        .aggregate([{ $match: { category: query } }])
+        .toArray();
+      res.json({
+        success: true,
+        message: "Products retrieved successfully",
+        data: result,
+      });
+    });
+
     app.get("/products/:id", async (req, res) => {
       const id = req.params.id;
       console.log({ id });
