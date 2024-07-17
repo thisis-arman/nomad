@@ -108,7 +108,7 @@ const Products = () => {
         <div>
 
 
-            <div className="my-5 grid md:grid-cols-12 justify-between border gap-4">
+            <div className="my-5 grid md:grid-cols-12 justify-between  gap-4">
                 <div className="h-screen  md:col-span-3 p-4 ">
                     <div className="flex justify-between m-4">
                         <Input className="w-24 " type="number" name="minPrice" defaultValue={minimumPriceOfProducts} />

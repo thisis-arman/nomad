@@ -135,8 +135,8 @@ const navigation = {
     //     },
     // ],
     pages: [
-        { name: 'About', href: '#' },
-        { name: 'Products', href: '#' },
+        { name: 'About', href: '/about' },
+        { name: 'Products', href: '/products' },
     ],
 }
 

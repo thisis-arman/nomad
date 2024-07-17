@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+
 export type TProduct = {
     _id: string;
     productName: string;
@@ -9,7 +11,9 @@ export type TProduct = {
     images: string;
 }
 
-const ProductCard = ({items}: TProduct[]) => {
+const ProductCard = ({ items }: TProduct[]) => {
+    const category = useParams()
+    
     console.log(items);
 
     return (

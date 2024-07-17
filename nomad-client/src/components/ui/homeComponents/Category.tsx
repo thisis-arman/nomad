@@ -1,6 +1,6 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import { useState } from "react";
-import { useGetAllProductsQuery, useGetProductByCategoryQuery, useGetProductsQuery } from "../../../redux/features/products/productApi";
+import { useGetAllProductsQuery, useGetProductByCategoryParamsQuery, useGetProductByCategoryQuery, useGetProductsQuery } from "../../../redux/features/products/productApi";
 import { TProduct } from "../ProductCard";
 
 const callouts = [
@@ -80,8 +80,8 @@ const ShopByCategory = () => {
                     <h2 className="text-2xl font-bold text-gray-900">Categories</h2>
 
                     <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
-                        {categories?.map((category,i) => (
-                            <div onClick={()=>fetchCategory(category.name)} key={i} className="group relative flex bg-white hover:shadow-lg hover:border p-4 rounded-lg sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1">
+                        {categories?.map((category, i) => (
+                            <div onClick={() => fetchCategory(category.name)} key={i} className="group relative flex bg-white hover:shadow-lg hover:border p-4 rounded-lg sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1">
                                 <div className="relative h-80 w-full overflow-hidden rounded-lg sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-95 sm:h-52">
                                     <img
                                         alt={category?.items[0]?.productName}
@@ -90,12 +90,12 @@ const ShopByCategory = () => {
                                     />
                                 </div>
                                 <h3 className="mt-6  text-sm text-gray-500">
-                                    <a href={'#'}>
+                                    <a href={`/get-products/${category.name}`}>
                                         <span className="absolute inset-0" />
                                         <h2 className="text-3xl font-bold text-black"> {category.name}</h2>
                                     </a>
-                                    <p className="text-md text-black py-2">{ category?.items?.length} items</p>
-                                <p className="text-base font-semibold text-gray-900">{category?.items[0]?.description}</p>
+                                    <p className="text-md text-black py-2">{category?.items?.length} items</p>
+                                    <p className="text-base font-semibold text-gray-900">{category?.items[0]?.description}</p>
                                 </h3>
                             </div>
                         ))}
