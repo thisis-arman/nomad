@@ -16,6 +16,8 @@ import {
     // TabPanels,
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useAppSelector } from '../../redux/hook'
+import Cart from '../../pages/Cart'
 
 const navigation = {
     // categories: [
@@ -140,8 +142,12 @@ const navigation = {
     ],
 }
 
+
+
 export default function Example() {
     const [open, setOpen] = useState(false)
+
+    const {cart}=useAppSelector((state)=>state.cart)
 
     return (
         <div className="bg-white">
@@ -426,7 +432,7 @@ export default function Example() {
                                             aria-hidden="true"
                                             className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                         />
-                                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{ cart?.length}</span>
                                         <span className="sr-only">items in cart, view bag</span>
                                     </a>
                                 </div>
@@ -435,6 +441,8 @@ export default function Example() {
                     </div>
                 </nav>
             </header>
+           
         </div>
     )
 }
+

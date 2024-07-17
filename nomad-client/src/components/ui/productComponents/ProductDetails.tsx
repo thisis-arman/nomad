@@ -74,7 +74,8 @@ const ProductDetails = () => {
     const dispatch = useAppDispatch()
 
     const { id } = useParams()
-    console.log(id);
+
+    // console.log(id);
 
     const { data, isLoading } = useGetSingleProductQuery(id);
 
@@ -88,14 +89,15 @@ const ProductDetails = () => {
     }
 
 
-    const handleAddToCart = (e) => {
+    const handleAddToCart = (e:Event) => {
         e.preventDefault()
 
 
-        const orderId = Math.random().toString().split('.')[1].substring(0, 7)
+        // const orderId = Math.random().toString().split('.')[1].substring(0, 7);
 
         const cartInfo = {
-            orderId,
+            
+            orderId: data?.data?._id,
             productName: data?.data?.productName,
             price: data?.data?.price,
             image: data?.data?.images,
@@ -113,7 +115,7 @@ const ProductDetails = () => {
                 <nav aria-label="Breadcrumb">
                     <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
 
-                        <li key={data.data._id}>
+                        <li key={data?.data?._id}>
                             <div className="flex items-center">
                                 <a href='/products' className="mr-2 text-sm font-medium text-gray-900">
                                     {data.data.category}
