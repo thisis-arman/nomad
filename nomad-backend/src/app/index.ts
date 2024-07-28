@@ -3,6 +3,9 @@ import * as dotenv from "dotenv";
 const { ObjectId } = require("mongodb");
 import express from "express";
 import cors from "cors";
+const stripe = require("stripe")(
+  "sk_test_51NEOh0J6vP03PB2IYLUQMU3ol2sM8jIvCuIY7rCh7saHtgifFFFBbZxLnRtzeOByCxL7oPhtWnxnXhaSMXFWOaBc00FH0XMu1u"
+);
 
 dotenv.config();
 
@@ -153,6 +156,26 @@ async function run() {
       }
     });
 
+    // PAYMENT
+
+    app.post("/create-payment-intent", async (req, res) => {
+      const { amount } = req.body;
+      const amountInCents = amount * 100;
+
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amountInCents, // Amount in cents
+          currency: "usd",
+        });
+
+        res.status(200).send({
+          clientSecret: paymentIntent.client_secret,
+        });
+      } catch (error: any) {
+        res.status(500).send({ error: error.message });
+      }
+    });
+
     // Send a ping to confirm a successful connection
     app.get("/", (req, res) => {
       res.send("Hello World!");
@@ -173,3 +196,11 @@ async function run() {
 }
 
 run().catch(console.dir);
+
+
+
+
+
+
+
+
