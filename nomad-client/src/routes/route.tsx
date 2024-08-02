@@ -8,6 +8,7 @@ import ProductDetails from "../components/ui/productComponents/ProductDetails";
 import CategoryCard from "../components/ui/homeComponents/CategoryCard";
 import Checkout from "../pages/Checkout";
 import Payment from "../pages/Payment";
+import { ProductManagement } from "../pages/ProductManagement";
 
 
 const router = createBrowserRouter([
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/products/:id',
-                element:<ProductDetails/>
+                element: <ProductDetails />
             },
             {
                 path: '/get-products/:category',
-                element:<CategoryCard/>
+                element: <CategoryCard />
             },
             {
                 path: "/cart",
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
                 path: "/payment",
                 element: <Payment />
             },
+            {
+                path: '/product-management',
+                element: <ProductManagement />
+            }
 
         ]
     },

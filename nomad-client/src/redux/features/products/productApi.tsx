@@ -3,6 +3,17 @@ import { baseApi } from "../../api/baseApi";
 export const productApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
 
+        addProducts: builder.mutation({
+            query: (productInfo) => {
+                return {
+                    url: "/products/add-product",
+                    method: "POST",
+                    body: productInfo
+                }
+            },
+            invalidatesTags: ['products'],
+
+        }),
         getProducts: builder.query({
             query: (searchQuery) => {
                 // console.log(searchQuery);
@@ -16,6 +27,7 @@ export const productApi = baseApi.injectEndpoints({
                     method: "GET",
                 };
             },
+            providesTags:['products']
         }),
         getAllProducts: builder.query({
             query: () => {
@@ -49,7 +61,16 @@ export const productApi = baseApi.injectEndpoints({
                 };
             },
         }),
+
+        deleteProducts: builder.mutation({
+            query: (_id) => {
+                return {
+                    url: `/products/${_id}`,
+                    method: "POST",
+                }
+            }
+        })
     })
 })
 
-export const { useGetAllProductsQuery, useGetProductsQuery, useGetSingleProductQuery, useGetProductByCategoryQuery ,useGetProductByCategoryParamsQuery} = productApi;
+export const {useAddProductsMutation, useGetAllProductsQuery, useGetProductsQuery, useGetSingleProductQuery, useGetProductByCategoryQuery, useGetProductByCategoryParamsQuery } = productApi;

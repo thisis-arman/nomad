@@ -250,8 +250,8 @@ export default function Example() {
                                 </a>
                             </div>
                             <div className="flow-root">
-                                <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                                    Create account
+                                <a href="/product-management" className="-m-2 block p-2 font-medium text-gray-900">
+                                    Dashboard
                                 </a>
                             </div>
                         </div>
@@ -400,8 +400,8 @@ export default function Example() {
                                         Sign in
                                     </a>
                                     <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
-                                    <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                                        Create account
+                                    <a href="/product-management" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                                       Dashboard
                                     </a>
                                 </div>
 

@@ -37,9 +37,7 @@ async function run() {
     // Connect the client to the server
     await client.connect();
     console.log("Connected to MongoDB");
-
     const productsCollection = client.db("nomad").collection("products");
-
     app.get("/products", async (req, res) => {
       const query = req.query.search;
       console.log("Query:", query);
@@ -155,6 +153,27 @@ async function run() {
         });
       }
     });
+
+
+  app.post("/products/add-product", async (req, res) => {
+    try {
+      
+      const productInfo = req.body; 
+      const result = await productsCollection.insertOne(productInfo); 
+
+      res.json({
+        success: true,
+        message: "Product added successfully",
+        data: result,
+      });
+    } catch (error:any) {
+      res.status(500).json({
+        success: false,
+        message: "An error occurred while adding the product",
+        error: error.message,
+      });
+    }
+  });
 
     // PAYMENT
 
