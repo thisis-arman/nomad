@@ -68,9 +68,10 @@ export const productApi = baseApi.injectEndpoints({
                     url: `/products/${_id}`,
                     method: "POST",
                 }
-            }
+            },
+            invalidatesTags: ['products'],
         })
     })
 })
 
-export const {useAddProductsMutation, useGetAllProductsQuery, useGetProductsQuery, useGetSingleProductQuery, useGetProductByCategoryQuery, useGetProductByCategoryParamsQuery } = productApi;
+export const {useAddProductsMutation,useDeleteProductsMutation, useGetAllProductsQuery, useGetProductsQuery, useGetSingleProductQuery, useGetProductByCategoryQuery, useGetProductByCategoryParamsQuery } = productApi;

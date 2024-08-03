@@ -1,12 +1,15 @@
+import { toast } from "sonner";
 import { Button } from "../components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { useAddProductsMutation, useGetProductsQuery } from "../redux/features/products/productApi";
+import { useAddProductsMutation, useDeleteProductsMutation, useGetProductsQuery } from "../redux/features/products/productApi";
+import Swal from "sweetalert2";
 
 export const ProductManagement = () => {
 
-    const [addProduct, { data: response}] = useAddProductsMutation();
+    const [addProduct, { data: response }] = useAddProductsMutation();
+    const [deleteProducts] = useDeleteProductsMutation();
 
 
     const { data, isLoading } = useGetProductsQuery('');
@@ -29,16 +32,41 @@ export const ProductManagement = () => {
 
         try {
             await addProduct({ productName, images, category, stockQuantity, price, ratings: 4.5 }).unwrap();
-            
+            toast.success('Product has been Added successfully')
         } catch (error) {
             console.log(error);
-
         }
+    }
+
+    const handleDeleteProduct = async (_id: string) => {
+
+
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteProducts(_id)
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your product has been deleted ",
+                    icon: "success"
+                });
+            }
+        });
+
 
 
     }
 
-   
+
     return (
         <div className="max-w-screen-xl mx-auto px-4 md:px-8 m-8">
             <div className="items-start justify-between md:flex">
@@ -102,7 +130,10 @@ export const ProductManagement = () => {
                                             <Input name="category" className="col-span-4" />
                                         </div>
                                     </div>
-                                    <Button type="submit" className="bg-green-600 hover:bg-green-700">Save changes</Button>
+                                    <DialogClose asChild >
+                                        <Button type="submit" className="bg-green-600 hover:bg-green-700">Save changes</Button>
+
+                                    </DialogClose>
                                 </form>
                             </DialogContent>
                         </Dialog>
@@ -137,7 +168,7 @@ export const ProductManagement = () => {
                                         <a href="javascript:void()" className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg">
                                             Edit
                                         </a>
-                                        <button className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
+                                        <button onClick={() => handleDeleteProduct(item._id)} className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
                                             Delete
                                         </button>
                                     </td>

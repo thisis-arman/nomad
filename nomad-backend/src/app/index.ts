@@ -174,6 +174,35 @@ async function run() {
       });
     }
   });
+    
+ app.post("/products/:_id", async (req, res) => {
+   // Use DELETE method
+   try {
+     const _id = req.params._id;
+     console.log(_id);
+     const result = await productsCollection.deleteOne({
+       _id: new ObjectId(_id),
+     }); 
+     if (result.deletedCount === 1) {
+       res.json({
+         success: true,
+         message: "Product has been deleted",
+         data: result,
+       });
+     } else {
+       res.status(404).json({
+         success: false,
+         message: "Product not found",
+       });
+     }
+   } catch (error:any) {
+     res.status(500).json({
+       success: false,
+       message: "An error occurred while deleting the product",
+       error: error.message,
+     });
+   }
+ });
 
     // PAYMENT
 
